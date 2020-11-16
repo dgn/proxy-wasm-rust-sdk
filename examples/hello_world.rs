@@ -30,8 +30,6 @@ pub fn _start() {
 
 struct HelloWorld;
 
-impl Context for HelloWorld {}
-
 impl RootContext for HelloWorld {
     fn on_vm_start(&mut self, _: usize) -> bool {
         info!("Hello, World!");
@@ -54,3 +52,5 @@ impl RootContext for HelloWorld {
         }
     }
 }
+
+impl Context for HelloWorld {}

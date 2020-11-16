@@ -24,25 +24,23 @@ pub fn _start() {
 
 struct HttpHeadersRoot;
 
-impl Context for HttpHeadersRoot {}
-
 impl RootContext for HttpHeadersRoot {
     fn get_type(&self) -> ContextType {
         ContextType::HttpContext
     }
 
-    fn create_http_context(&self, _context_id: u32, _root_context_id: u32) -> Box<dyn HttpContext> {
+    fn create_http_context(&self, _context_id: u32) -> Box<dyn HttpContext> {
         Box::new(HttpHeaders {
             context_id: _context_id,
         })
     }
 }
 
+impl Context for HttpHeadersRoot {}
+
 struct HttpHeaders {
     context_id: u32,
 }
-
-impl Context for HttpHeaders {}
 
 impl HttpContext for HttpHeaders {
     fn on_http_request_headers(&mut self, _: usize) -> Action {
@@ -74,3 +72,5 @@ impl HttpContext for HttpHeaders {
         trace!("#{} completed.", self.context_id);
     }
 }
+
+impl Context for HttpHeaders {}

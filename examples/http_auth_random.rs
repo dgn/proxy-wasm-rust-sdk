@@ -31,7 +31,7 @@ impl RootContext for HttpAuthRandomRoot {
         ContextType::HttpContext
     }
 
-    fn create_http_context(&self, _root_context_id: u32, _context_id: u32) -> Box<dyn HttpContext> {
+    fn create_http_context(&self, _context_id: u32) -> Box<dyn HttpContext> {
         Box::new(HttpAuthRandom)
     }
 }

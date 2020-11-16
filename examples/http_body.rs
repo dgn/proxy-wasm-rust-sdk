@@ -29,14 +29,12 @@ impl RootContext for HttpBodyRoot {
         ContextType::HttpContext
     }
 
-    fn create_http_context(&self, _context_id: u32, _root_context_id: u32) -> Box<dyn HttpContext> {
+    fn create_http_context(&self, _context_id: u32) -> Box<dyn HttpContext> {
         Box::new(HttpBody)
     }
 }
 
 impl Context for HttpBodyRoot {}
-
-impl Context for HttpBody {}
 
 impl HttpContext for HttpBody {
     fn on_http_response_headers(&mut self, _: usize) -> Action {
@@ -67,3 +65,5 @@ impl HttpContext for HttpBody {
         Action::Continue
     }
 }
+
+impl Context for HttpBody {}
